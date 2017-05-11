@@ -21,6 +21,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>fotoquest-mappings</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.n52.series-api</groupId>
             <artifactId>io</artifactId>
             <scope>runtime</scope>
@@ -31,13 +36,8 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.n52.series-api</groupId>
-            <artifactId>series-dao</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>fotoquest-mappings</artifactId>
+            <groupId>org.n52.series-api.db</groupId>
+            <artifactId>dao</artifactId>
             <scope>runtime</scope>
         </dependency>
         

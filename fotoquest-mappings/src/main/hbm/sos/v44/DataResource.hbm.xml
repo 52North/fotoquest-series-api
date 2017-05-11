@@ -7,12 +7,15 @@
             <generator class="assigned" />
         </id>
 
+        <discriminator formula="'fotoquest-media'" force="true" type="string"/>
         <property column="seriesid" name="seriesPkid" type="long" />
-        <property formula="'F'" name="deleted"
-            type="org.hibernate.type.TrueFalseType" />
+        <property formula="'F'" name="deleted" type="org.hibernate.type.TrueFalseType" />
         <property column="resulttime" name="timestart" type="timestamp" />
         <property column="resulttime" name="timeend" type="timestamp" update="false" insert="false"/>
-
+        <property formula="'F'" name="parent" type="org.hibernate.type.TrueFalseType" />
+        <property formula="'F'" name="child" type="org.hibernate.type.TrueFalseType" />
+        <property name="valueType" formula="'fotoquest'" type="string" />
+        
         <map lazy="false" name="value" table="observation_set">
             <key column="observationid" />
             <index column="direction" type="string" />

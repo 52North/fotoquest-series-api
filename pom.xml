@@ -4,12 +4,12 @@
     <parent>
         <groupId>org.n52</groupId>
         <artifactId>parent</artifactId>
-        <version>4</version>
+        <version>7</version>
     </parent>
     <groupId>org.n52.series-api.fotoquest</groupId>
     <artifactId>fotoquest</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Fotoquest Series REST API - SPI Series Impl</name>
+    <name>Fotoquest Series REST API</name>
     <packaging>pom</packaging>
 
     <modules>
@@ -54,6 +54,7 @@
         <hamcrest.version>1.3</hamcrest.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <series.api.version>2.0.0-SNAPSHOT</series.api.version>
+        <series.dao.version>2.0.0-SNAPSHOT</series.dao.version>
 
         <java.compiler.source>1.8</java.compiler.source>
         <java.compiler.target>1.8</java.compiler.target>
@@ -66,6 +67,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>fotoquest-mappings</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         
             <dependency>
                 <groupId>org.n52.series-api</groupId>
@@ -74,7 +80,7 @@
             </dependency>
             <dependency>
                 <groupId>org.n52.series-api</groupId>
-                <artifactId>series-dao</artifactId>
+                <artifactId>spi</artifactId>
                 <version>${series.api.version}</version>
             </dependency>
             <dependency>
@@ -83,9 +89,9 @@
                 <version>${series.api.version}</version>
             </dependency>
             <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>fotoquest-mappings</artifactId>
-                <version>${project.version}</version>
+                <groupId>org.n52.series-api.db</groupId>
+                <artifactId>dao</artifactId>
+                <version>${series.dao.version}</version>
             </dependency>
             
             <dependency>
@@ -397,19 +403,6 @@
             </plugin>
 
             <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>get-the-git-infos</id>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <groupId>org.codehaus.groovy.maven</groupId>
                 <artifactId>gmaven-plugin</artifactId>
                 <executions>
@@ -417,63 +410,6 @@
                         <phase>initialize</phase>
                         <goals>
                             <goal>execute</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <id>check-license</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jasig.maven</groupId>
-                <artifactId>maven-notice-plugin</artifactId>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <id>check-license</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -536,9 +472,8 @@
                             <latestYearOfContribution>${currentYear}</latestYearOfContribution>
                             <latestYearOfContribution>${currentYearDynamic}</latestYearOfContribution>
                         </properties>
-                        <!--<aggregate>true</aggregate> -->
                         <includes>
-                            <include>src/**/*.java</include>
+                            <include>**/src/**/*.java</include>
                         </includes>
                         <excludes>
                             <exclude>**/logback.xml</exclude>

@@ -7,28 +7,30 @@
       <generator class="assigned"/>
     </id>
 
-    <discriminator formula="'record'" force="true" type="string"/>
-
+    <discriminator formula="'fotoquest'" force="true" type="string"/>
     <many-to-one class="CategoryEntity" column="categoryid" insert="false" name="category" update="false"/>
     <many-to-one class="ProcedureEntity" column="procedureid" insert="false" name="procedure" update="false"/>
     <many-to-one class="PhenomenonEntity" column="observablepropertyid" insert="false" name="phenomenon" update="false"/>
     <many-to-one class="FeatureEntity" column="featureofinterestid" insert="false" name="feature" update="false"/>
+    <many-to-one class="OfferingEntity" column="procedureid" insert="false" name="offering" update="false"/>
     <many-to-one class="PlatformEntity" column="featureofinterestid" insert="false" name="platform" update="false"/>
 
     <property column="published" insert="false" name="published" type="org.hibernate.type.TrueFalseType" update="false"/>
-    <property insert="false" name="datasetType" type="string" formula="'record'" update="false"/>
     <property column="deleted" insert="false" name="deleted" type="org.hibernate.type.TrueFalseType" update="false"/>
+    <property name="valueType" formula="'fotoquest'" type="string" />
 
     <property column="firsttimestamp" name="firstValueAt" type="timestamp"/>
     <property column="lasttimestamp" name="lastValueAt" type="timestamp"/>
 
-    <subclass discriminator-value="record" name="RecordDatasetEntity">
+    <subclass name="RecordDatasetEntity" discriminator-value="fotoquest">
         <list fetch="select" inverse="true" name="observations" table="observation">
             <key column="observationid"/>
             <index column="seriesid"/>
             <one-to-many class="RecordDataEntity"/>
         </list>
+        
     </subclass>
 
   </class>
+  
 </hibernate-mapping>
