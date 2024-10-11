@@ -1,6 +1,8 @@
-# Fotoquest DAO Mappings for 52n DAO SPI module
+# ARCHIVED
 
-<img style="width: 60%; height: 60%" alt="series-rest-api architecture overview" src="https://52north.github.io/series-rest-api/img/big-picture.png">
+This project is no longer maintained and will not receive any further updates. If you plan to continue using it, please be aware that future security issues will not be addressed.
+
+# Fotoquest DAO Mappings for 52n DAO SPI module
 
 ## Description
 
